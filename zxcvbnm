@@ -284,4 +284,38 @@ public class Display {
 
 }
 
+-------sprin--
+package com.quection3.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+
+public class TaxController {
+	/*@GetMapping("/calculateTax/{salary}/{taxRate}")
+    public String calculateTax(@PathVariable("salary") double grossSalary, 
+                               @PathVariable("taxRate") double taxRate) {*/
+
+    @GetMapping("/calculateTax/{salary}")
+    public String calculateTaxs(@PathVariable("salary") double grossSalary) {
+        double tax = 0.0;
+
+        if (grossSalary <= 100000) {
+            tax = 0.0;
+        } else if (grossSalary > 100000 && grossSalary <= 200000) {
+            tax = grossSalary * 0.10;
+        } else if (grossSalary > 200000 && grossSalary <= 400000) {
+            tax = grossSalary * 0.20;
+        } else if (grossSalary > 400000) {
+            tax = grossSalary * 0.30;
+        }
+       
+        return "Gross salary is : "+ tax;
+    }
+    
+}
+
 
