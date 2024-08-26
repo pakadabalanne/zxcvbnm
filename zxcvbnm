@@ -1,4 +1,4 @@
----------------------SOAPUI Gross Salary---------------
+---------------------spring boot Gross Salary---------------
 package com.example.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -183,19 +183,33 @@ public class TaxCalculatorController {
 
                 //end of update part
 
-                //delete part
 
+                //delete content
                 var del_element = xmlDoc.getElementsByTagName("Name")[0];
                 var new_del_element = del_element.childNodes[0];
-
                 document.getElementById("data2").innerHTML = del_element.removeChild(new_del_element);
 
+		
             }
         };         
 
     </script>
 </body>
 </html>
+
+
+
+--------delete------
+
+
+		var del = xmlDoc.getElementsByTagName("id")[0];
+               	var del_att = del.childNodes[0];
+               	document.getElementById("data1").innerHTML = del.removeChild(del_att);
+
+
+               	var del2 = xmlDoc.getElementsByTagName("faculty")[0];
+               	var del2_new = del.getAttributeNode("dept");
+               	document.getElementById("data4").innerHTML = del2.removeAttribute(del2_new);
 
 
 ---------------------SOAPUI Bill Calculation---------------
@@ -238,10 +252,36 @@ import org.springframework.web.bind.annotation.RestController;
 public class Uni {
 	@GetMapping("/wellcome")
 	public String getInfo() {
-		return "Lakshitha";
+		return "jj";
 	}
 
 }
 
 
---------------
+
+
+
+-------------Lab9-----
+
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+ @RestController
+public class Display {
+
+    @GetMapping("/welcome")
+    public String GetInfo() {
+        return "welcome To South Earsten Univisity of srilanka";
+    }
+
+
+    @GetMapping("/LeId/{id}")
+    public String UpdateID (@PathVariable("id") int Lid) {
+        return "Upadate :" + Lid;
+    }
+
+
+}
+
+
