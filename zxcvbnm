@@ -1,0 +1,247 @@
+---------------------SOAPUI Gross Salary---------------
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class TaxCalculatorController {
+
+    @GetMapping("/calculateTax")
+    public String calculateTax(@RequestParam double grossSalary) {
+        double tax;
+        
+        if (grossSalary <= 100000) {
+            tax = 0;
+        } else if (grossSalary <= 200000) {
+            tax = grossSalary * 0.10;
+        } else if (grossSalary <= 400000) {
+            tax = grossSalary * 0.20;
+        } else {
+            tax = grossSalary * 0.30;
+        }
+        
+        return "The calculated tax is: Rs. " + tax;
+    }
+}
+
+
+------amas.xml-----
+
+<Amas>
+    <Employee Category = "Sales">
+        <Id>01</Id>
+        <Name>Walter</Name>
+        <Age>35</Age>
+        <City State = "Califonia">Los Angeles</City>
+        <Salary>$5450</Salary>
+    </Employee>
+    <Employee Category = "Research And Development">
+        <Id>02</Id>
+        <Name>Wick</Name>
+        <Age>32</Age>
+        <City State = "Texas">Austin</City>
+        <Salary>$9825</Salary>
+    </Employee>
+    <Employee Category = "Production And Supply">
+        <Id>03</Id>
+        <Name>Jhon</Name>
+        <Age>33</Age>
+        <City State = "Florida">Miami</City>
+        <Salary>$7800</Salary>
+    </Employee>
+    <Employee Category = "Finacial">
+        <Id>04</Id>
+        <Name>Liam</Name>
+        <Age>30</Age>
+        <City State = "Alaska">Nome</City>
+        <Salary>$10825</Salary>
+    </Employee>
+    <Employee Category = "Human Resources">
+        <Id>05</Id>
+        <Name>William</Name>
+        <Age>38</Age>
+        <City State = "Georgia">Columbus</City>
+        <Salary>$10100</Salary>
+    </Employee>
+</Amas>
+
+
+-------data.html---------
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    <table border="1">
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>City/State</th>
+            <th>Basic Salary</th>
+        </tr>
+        <tr>
+            <td id="data1"></td>
+            <td id="data2"></td>
+            <td id="data3"></td>
+            <td id="data4"></td>
+            <td id="data5"></td>
+        </tr>
+        <tr>
+            <td id="data6"></td>
+            <td id="data7"></td>
+            <td id="data8"></td>
+            <td id="data9"></td>
+            <td id="data10"></td>
+        </tr>
+        <tr>
+            <td id="data11"></td>
+            <td id="data12"></td>
+            <td id="data13"></td>
+            <td id="data14"></td>
+            <td id="data15"></td>
+        </tr>
+        <tr>
+            <td id="data16"></td>
+            <td id="data17"></td>
+            <td id="data18"></td>
+            <td id="data19"></td>
+            <td id="data20"></td>
+        </tr>
+        <tr>
+            <td id="data21"></td>
+            <td id="data22"></td>
+            <td id="data23"></td>
+            <td id="data24"></td>
+            <td id="data25"></td>
+        </tr>
+
+    </table>
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET","amas.xml",true);
+        xhttp.send();
+        xhttp.onreadystatechange = function(){
+            if (xhttp.readyState == 4 && xhttp.status == 200){
+
+                var xmlDoc = xhttp.responseXML;
+                // 1st row
+                document.getElementById("data1").innerHTML = xmlDoc.getElementsByTagName("Id")[0].childNodes[0].nodeValue;
+                document.getElementById("data2").innerHTML = xmlDoc.getElementsByTagName("Name")[0].childNodes[0].nodeValue;
+                document.getElementById("data3").innerHTML = xmlDoc.getElementsByTagName("Employee")[0].attributes[0].nodeValue;
+                document.getElementById("data4").innerHTML = xmlDoc.getElementsByTagName("City")[0].childNodes[0].nodeValue + "," +xmlDoc.getElementsByTagName("City")[0].attributes[0].nodeValue;
+                document.getElementById("data5").innerHTML = xmlDoc.getElementsByTagName("Salary")[0].childNodes[0].nodeValue;
+
+                //2nd row
+                document.getElementById("data6").innerHTML = xmlDoc.getElementsByTagName("Id")[1].childNodes[0].nodeValue;
+                document.getElementById("data7").innerHTML = xmlDoc.getElementsByTagName("Name")[1].childNodes[0].nodeValue;
+                document.getElementById("data8").innerHTML = xmlDoc.getElementsByTagName("Employee")[1].attributes[0].nodeValue;
+                document.getElementById("data9").innerHTML = xmlDoc.getElementsByTagName("City")[1].childNodes[0].nodeValue + "," +xmlDoc.getElementsByTagName("City")[1].attributes[0].nodeValue;
+                document.getElementById("data10").innerHTML = xmlDoc.getElementsByTagName("Salary")[1].childNodes[0].nodeValue;
+
+                //3rd row
+                document.getElementById("data11").innerHTML = xmlDoc.getElementsByTagName("Id")[2].childNodes[0].nodeValue;
+                document.getElementById("data12").innerHTML = xmlDoc.getElementsByTagName("Name")[2].childNodes[0].nodeValue;
+                document.getElementById("data13").innerHTML = xmlDoc.getElementsByTagName("Employee")[2].attributes[0].nodeValue;
+                document.getElementById("data14").innerHTML = xmlDoc.getElementsByTagName("City")[2].childNodes[0].nodeValue + "," +xmlDoc.getElementsByTagName("City")[2].attributes[0].nodeValue;
+                document.getElementById("data15").innerHTML = xmlDoc.getElementsByTagName("Salary")[2].childNodes[0].nodeValue;
+
+                //4th row
+                document.getElementById("data16").innerHTML = xmlDoc.getElementsByTagName("Id")[3].childNodes[0].nodeValue;
+                document.getElementById("data17").innerHTML = xmlDoc.getElementsByTagName("Name")[3].childNodes[0].nodeValue;
+                document.getElementById("data18").innerHTML = xmlDoc.getElementsByTagName("Employee")[3].attributes[0].nodeValue;
+                document.getElementById("data19").innerHTML = xmlDoc.getElementsByTagName("City")[3].childNodes[0].nodeValue + "," +xmlDoc.getElementsByTagName("City")[3].attributes[0].nodeValue;
+                document.getElementById("data20").innerHTML = xmlDoc.getElementsByTagName("Salary")[3].childNodes[0].nodeValue;
+
+                //5th row
+                document.getElementById("data21").innerHTML = xmlDoc.getElementsByTagName("Id")[4].childNodes[0].nodeValue;
+                document.getElementById("data22").innerHTML = xmlDoc.getElementsByTagName("Name")[4].childNodes[0].nodeValue;
+                document.getElementById("data23").innerHTML = xmlDoc.getElementsByTagName("Employee")[4].attributes[0].nodeValue;
+                document.getElementById("data24").innerHTML = xmlDoc.getElementsByTagName("City")[4].childNodes[0].nodeValue + "," +xmlDoc.getElementsByTagName("City")[4].attributes[0].nodeValue;
+                document.getElementById("data25").innerHTML = xmlDoc.getElementsByTagName("Salary")[4].childNodes[0].nodeValue;
+
+                //end 1st part(data show in table)
+
+                //update part
+                var x = xmlDoc.getElementsByTagName("City")[3].childNodes[0];
+                x.nodeValue = "Jersey City"; //chance data(City)
+
+                var z = xmlDoc.getElementsByTagName("City")[3];
+                var New_attribute = z.getAttributeNode("State");
+                 New_attribute = "New Jersey"; //change attribute value
+
+
+                document.getElementById("data19").innerHTML = x.nodeValue + ","+ New_attribute; //print changed data and attributr value
+                
+                var u = xmlDoc.getElementsByTagName("Salary")[1].childNodes[0];
+                u.nodeValue = "$10000"; //chance data(salary)
+
+                document.getElementById("data10").innerHTML = u.nodeValue;//print updated salary
+
+                //end of update part
+
+                //delete part
+
+                var del_element = xmlDoc.getElementsByTagName("Name")[0];
+                var new_del_element = del_element.childNodes[0];
+
+                document.getElementById("data2").innerHTML = del_element.removeChild(new_del_element);
+
+            }
+        };         
+
+    </script>
+</body>
+</html>
+
+
+---------------------SOAPUI Bill Calculation---------------
+
+package com.eBill;
+
+public class Calebill {
+	public int Bill(int unit) {
+		int amount = 0;
+		
+		if (unit <= 60) {
+			amount = unit*10;
+		}
+		else if (unit <=90 && unit >= 61) {
+			amount = (unit-60 * 15)+600;
+		
+		}
+		else if (unit <=180 && unit>=91) {
+			amount = (unit-91 * 30)+1035;
+		}
+		else if (unit <= 400 && unit>=181) {
+			amount = (unit-181 * 50)+3705;
+		}
+		else if (unit>=400) {
+			amount = (unit-400*70)+14655;
+		}
+		return amount;
+	}
+
+}
+
+-----------rest---------
+
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Uni {
+	@GetMapping("/wellcome")
+	public String getInfo() {
+		return "Lakshitha";
+	}
+
+}
+
+
+--------------
